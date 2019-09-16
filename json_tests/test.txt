@@ -1,0 +1,37 @@
+{
+    "people": [{
+        "firstName": "Jane",
+        "lastName": "Doe",
+        "hobbies": ["running", "sky diving", "singing"],
+        "age": 35,
+        "children": [{
+            "firstName": "Alice",
+            "age": 6,
+            "hobbies": ["a", "b", "c"]
+        }, {
+            "firstName": "Bob",
+            "age": 8,
+            "hobbies": ["a", "b", "c"]
+        }]
+    }, {
+        "firstName": "Carlos",
+        "lastName": "Ortega",
+        "hobbies": ["running", "sky diving", "singing"],
+        "age": 48,
+        "children": [{
+            "firstName": "Oscar",
+            "age": 7,
+            "hobbies": ["a", "b", "c"]
+        }]
+    }]
+} {
+    'name': 'indexatorTest',
+    'dir': 'C:\\Users\\jgcar\\Desktop\\indexatorTest',
+    'files': ['indexatorTest_indexatortestIndexatortestindexatortestindexatortestindexatortestindexatorprefile-0.pptx', 'indexatorTest_indexatortestIndexatortestindexatortestindexatortestindexatortestindexatorprefile-1.pptx', 'indexatorTest_indexatortestIndexatortestindexatortestindexatortestindexatortestindexatorprefile-2.pptx', 'indexatorTest_indexatortestIndexatortestindexatortestindexatortestindexatortestindexatorprefile-3.pptx', 'indexatorTest_indexatortestIndexatortestindexatortestindexatortestindexatortestindexatorprefile-4.pptx', 'indexatorTest_indexatortestIndexatortestindexatortestindexatortestindexatortestindexatorprefile-5.pptx', 'indexatorTest_indexatortestIndexatortestindexatortestindexatortestindexatortestindexatorprefile-6.pptx', 'indexatorTest_indexatortestIndexatortestindexatortestindexatortestindexatortestindexatorprefile-7.pptx', 'indexatorTest_indexatortestIndexatortestindexatortestindexatortestindexatortestindexatorprefile-8.pptx', 'indexatorTest_indexatortestIndexatortestindexatortestindexatortestindexatortestindexatorprefile-9.pptx']
+} {
+    'folders': []
+} {
+    'name': 'indexatorBranch0',
+    'dir': 'C:\\Users\\jgcar\\Desktop\\indexatorTest\\indexatorBranch0',
+    'files': ['indexatorTest_indexatorBranch0_indexatortestIndexatorbranch0Indexatortestindexatorbranch0indexatortestindexatorbranch0indexatorfile-0.docx', 'indexatorTest_indexatorBranch0_indexatortestIndexatorbranch0Indexatortestindexatorbranch0indexatortestindexatorbranch0indexatorfile-1.docx', 'indexatorTest_indexatorBranch0_indexatortestIndexatorbranch0Indexatortestindexatorbranch0indexatortestindexatorbranch0indexatorfile-2.docx', 'indexatorTest_indexatorBranch0_indexatortestIndexatorbranch0Indexatortestindexatorbranch0indexatortestindexatorbranch0indexatorfile-3.docx', 'indexatorTest_indexatorBranch0_indexatortestIndexatorbranch0Indexatortestindexatorbranch0indexatortestindexatorbranch0indexatorfile-4.docx', 'indexatorTest_indexatorBranch0_indexatortestIndexatorbranch0Indexatortestindexatorbranch0indexatortestindexatorbranch0indexatorfile-5.docx', 'indexatorTest_indexatorBranch0_indexatortestIndexatorbranch0Indexatortestindexatorbranch0indexatortestindexatorbranch0indexatorfile-6.docx', 'indexatorTest_indexatorBranch0_indexatortestIndexatorbranch0Indexatortestindexatorbranch0indexatortestindexatorbranch0indexatorfile-7.docx', 'indexatorTest_indexatorBranch0_indexatortestIndexatorbranch0Indexatortestindexatorbranch0indexatortestindexatorbranch0indexatorfile-8.docx', 'indexatorTest_indexatorBranch0_indexatortestIndexatorbranch0Indexatortestindexatorbranch0indexatortestindexatorbranch0indexatorfile-9.docx']
+}
