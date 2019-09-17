@@ -35,6 +35,7 @@ class IndexManager:
 
         #print(self.index)
 
+    #TODO: Optimize and clean code
     def select_cell(self, starting_cell, parent_folders):
         cell = self.index["folders"]
         #If we are not in the wanted cell
@@ -44,7 +45,7 @@ class IndexManager:
                     if folder_cell["name"] == parent_folder: #If the folder we are looking for is the atual one
                         #if i < (len(parent_folders) - 1):
                         cell = folder_cell['folders'] #Select folder
-        print(cell)
+        #print(cell)
         return cell
 
 index_manager = IndexManager()

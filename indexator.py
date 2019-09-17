@@ -82,7 +82,7 @@ class DirectoryIndexator:
         tree = cleaner.clean_tree(raw_tree, self.remove_plural)
         file_name = cleaner.clean_name(raw_file_name)
         prefix = '_'.join(tree)
-        #If file is not indexed, this is name to savee
+        #If file is not indexed, this is name to save
         name_ = prefix + '_' + file_name
 
         #If file is already indexed, this is target name

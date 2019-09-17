@@ -79,7 +79,7 @@ class Searcher:
                         if file_cell[0] == raw_input:
                             print("File found: %s" % (file_cell[0]))
         else:
-            file_cells = self.file_search(tree[1], self.selection)
+            file_cells = self.file_search(tree[0], self.selection)
             print(file_cells)
 
             for file_cell in file_cells:
@@ -87,4 +87,4 @@ class Searcher:
                     print("File found: %s" % (file_cell[0]))
 
 searcher = Searcher()
-searcher.search("idxBranch_idxFile-0.docx")
+searcher.search("idxFile-0.docx")
