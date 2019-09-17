@@ -22,7 +22,7 @@ class DirectoryIndexator:
             root_name = root_path[len(root_path) - 1]
 
             #Define branch in index manager
-            index_manager.define_folder(root_name, root)
+            index_manager.define_folder(root_name, root, [root_name])
 
             #Search directory for folders and files
             for root, branches, files in os.walk('.'):
@@ -48,7 +48,7 @@ class DirectoryIndexator:
         libs.go(path)
 
         #Define branch in index manager
-        index_manager.define_folder(tree[len(tree) - 1], path)
+        index_manager.define_folder(tree[len(tree) - 1], path, tree)
 
         #Search branch
         for root, branches, files in os.walk('.'):
@@ -92,11 +92,11 @@ class DirectoryIndexator:
             #It hasn't been indexed
             os.rename(raw_file_name, name_)
             #Save name in index_manager
-            index_manager.files.append(name_)
+            index_manager.files.append(file_name)
         else:
             #It has been indexed
             #Save name in index_manager
-            index_manager.files.append(raw_file_name)
+            index_manager.files.append(original_file_name)
 
 home_dir = "C:\\Users\\jgcar\\Desktop\\idxTest"
 indexator = DirectoryIndexator(home_dir)
