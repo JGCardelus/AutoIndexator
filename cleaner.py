@@ -1,17 +1,15 @@
 def clean_tree(raw_tree, remove_plural):
-    tree = []
+    branch = raw_tree[-1]
+    #TODO: Check further processing
+    branch = list(branch)
+    branch[0].lower()
+    if remove_plural and branch[len(branch) - 1] == 's':
+        #If the last letter of the branch is an 's', remove it
+        branch.pop(len(branch) - 1) #Remove s
+        
+    branch = "".join(branch) #Reconvert to string
 
-    for branch in raw_tree:
-        #TODO: Check further processing
-        branch.lower()
-        if remove_plural and branch[len(branch) - 1] == 's':
-            #If the last letter of the branch is an 's', remove it
-            branch = list(branch) #Convert to list
-            branch.pop(len(branch) - 1) #Remove s
-            branch = "".join(branch) #Reconvert to string
-        tree.append(branch)
-
-    return tree
+    return branch
 
 def clean_name(raw_file_name):
     old_name, extension = get_extension(raw_file_name)
@@ -46,6 +44,15 @@ def convert_camel_casing(raw_file):
             #If chunk is a one letter character and it is not at the end
             file_ += '-'
 
+    return file_
+
+def remove_docType_extension(raw_file):
+    docTypes = ["doc", "pdf", "vid"]
+    raw_file = raw_file.split('_')
+    if raw_file[-2] in docTypes:
+        raw_file.pop(-2) #prefix_prefix_doc_name.extension
+
+    file_ = "".join(raw_file)
     return file_
 
 def remove_special_chars(file_):

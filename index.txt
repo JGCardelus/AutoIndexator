@@ -3,8 +3,9 @@
         {
             "name": "idxTest",
             "dir": "C:\\Users\\jgcar\\Desktop\\idxTest",
-            "tree": [
-                "idxTest"
+            "exclude": [
+                "idxBranch9",
+                "idxBranch8"
             ],
             "files": [
                 "idxPreFile-0.pptx",
@@ -22,10 +23,6 @@
                 {
                     "name": "idxBranch0",
                     "dir": "C:\\Users\\jgcar\\Desktop\\idxTest\\idxBranch0",
-                    "tree": [
-                        "idxTest",
-                        "idxBranch0"
-                    ],
                     "files": [
                         "idxFile-0.docx",
                         "idxFile-1.docx",
@@ -43,10 +40,6 @@
                 {
                     "name": "idxBranch1",
                     "dir": "C:\\Users\\jgcar\\Desktop\\idxTest\\idxBranch1",
-                    "tree": [
-                        "idxTest",
-                        "idxBranch1"
-                    ],
                     "files": [
                         "idxFile-0.docx",
                         "idxFile-1.docx",
@@ -64,10 +57,6 @@
                 {
                     "name": "idxBranch2",
                     "dir": "C:\\Users\\jgcar\\Desktop\\idxTest\\idxBranch2",
-                    "tree": [
-                        "idxTest",
-                        "idxBranch2"
-                    ],
                     "files": [
                         "idxFile-0.docx",
                         "idxFile-1.docx",
@@ -85,10 +74,6 @@
                 {
                     "name": "idxBranch3",
                     "dir": "C:\\Users\\jgcar\\Desktop\\idxTest\\idxBranch3",
-                    "tree": [
-                        "idxTest",
-                        "idxBranch3"
-                    ],
                     "files": [
                         "idxFile-0.docx",
                         "idxFile-1.docx",
@@ -106,10 +91,6 @@
                 {
                     "name": "idxBranch4",
                     "dir": "C:\\Users\\jgcar\\Desktop\\idxTest\\idxBranch4",
-                    "tree": [
-                        "idxTest",
-                        "idxBranch4"
-                    ],
                     "files": [
                         "idxFile-0.docx",
                         "idxFile-1.docx",
@@ -127,10 +108,6 @@
                 {
                     "name": "idxBranch5",
                     "dir": "C:\\Users\\jgcar\\Desktop\\idxTest\\idxBranch5",
-                    "tree": [
-                        "idxTest",
-                        "idxBranch5"
-                    ],
                     "files": [
                         "idxFile-0.docx",
                         "idxFile-1.docx",
@@ -148,10 +125,6 @@
                 {
                     "name": "idxBranch6",
                     "dir": "C:\\Users\\jgcar\\Desktop\\idxTest\\idxBranch6",
-                    "tree": [
-                        "idxTest",
-                        "idxBranch6"
-                    ],
                     "files": [
                         "idxFile-0.docx",
                         "idxFile-1.docx",
@@ -169,10 +142,161 @@
                 {
                     "name": "idxBranch7",
                     "dir": "C:\\Users\\jgcar\\Desktop\\idxTest\\idxBranch7",
-                    "tree": [
-                        "idxTest",
-                        "idxBranch7"
+                    "files": [
+                        "idxFile-0.docx",
+                        "idxFile-1.docx",
+                        "idxFile-2.docx",
+                        "idxFile-3.docx",
+                        "idxFile-4.docx",
+                        "idxFile-5.docx",
+                        "idxFile-6.docx",
+                        "idxFile-7.docx",
+                        "idxFile-8.docx",
+                        "idxFile-9.docx"
                     ],
+                    "folders": []
+                }
+            ]
+        },
+        {
+            "name": "idxTest",
+            "dir": "C:\\Users\\jgcar\\Desktop\\idxTest",
+            "exclude": [],
+            "files": [
+                "idxPreFile-0.pptx",
+                "idxPreFile-1.pptx",
+                "idxPreFile-2.pptx",
+                "idxPreFile-3.pptx",
+                "idxPreFile-4.pptx",
+                "idxPreFile-5.pptx",
+                "idxPreFile-6.pptx",
+                "idxPreFile-7.pptx",
+                "idxPreFile-8.pptx",
+                "idxPreFile-9.pptx"
+            ],
+            "folders": [
+                {
+                    "name": "idxBranch0",
+                    "dir": "C:\\Users\\jgcar\\Desktop\\idxTest\\idxBranch0",
+                    "files": [
+                        "idxFile-0.docx",
+                        "idxFile-1.docx",
+                        "idxFile-2.docx",
+                        "idxFile-3.docx",
+                        "idxFile-4.docx",
+                        "idxFile-5.docx",
+                        "idxFile-6.docx",
+                        "idxFile-7.docx",
+                        "idxFile-8.docx",
+                        "idxFile-9.docx"
+                    ],
+                    "folders": []
+                },
+                {
+                    "name": "idxBranch1",
+                    "dir": "C:\\Users\\jgcar\\Desktop\\idxTest\\idxBranch1",
+                    "files": [
+                        "idxFile-0.docx",
+                        "idxFile-1.docx",
+                        "idxFile-2.docx",
+                        "idxFile-3.docx",
+                        "idxFile-4.docx",
+                        "idxFile-5.docx",
+                        "idxFile-6.docx",
+                        "idxFile-7.docx",
+                        "idxFile-8.docx",
+                        "idxFile-9.docx"
+                    ],
+                    "folders": []
+                },
+                {
+                    "name": "idxBranch2",
+                    "dir": "C:\\Users\\jgcar\\Desktop\\idxTest\\idxBranch2",
+                    "files": [
+                        "idxFile-0.docx",
+                        "idxFile-1.docx",
+                        "idxFile-2.docx",
+                        "idxFile-3.docx",
+                        "idxFile-4.docx",
+                        "idxFile-5.docx",
+                        "idxFile-6.docx",
+                        "idxFile-7.docx",
+                        "idxFile-8.docx",
+                        "idxFile-9.docx"
+                    ],
+                    "folders": []
+                },
+                {
+                    "name": "idxBranch3",
+                    "dir": "C:\\Users\\jgcar\\Desktop\\idxTest\\idxBranch3",
+                    "files": [
+                        "idxFile-0.docx",
+                        "idxFile-1.docx",
+                        "idxFile-2.docx",
+                        "idxFile-3.docx",
+                        "idxFile-4.docx",
+                        "idxFile-5.docx",
+                        "idxFile-6.docx",
+                        "idxFile-7.docx",
+                        "idxFile-8.docx",
+                        "idxFile-9.docx"
+                    ],
+                    "folders": []
+                },
+                {
+                    "name": "idxBranch4",
+                    "dir": "C:\\Users\\jgcar\\Desktop\\idxTest\\idxBranch4",
+                    "files": [
+                        "idxFile-0.docx",
+                        "idxFile-1.docx",
+                        "idxFile-2.docx",
+                        "idxFile-3.docx",
+                        "idxFile-4.docx",
+                        "idxFile-5.docx",
+                        "idxFile-6.docx",
+                        "idxFile-7.docx",
+                        "idxFile-8.docx",
+                        "idxFile-9.docx"
+                    ],
+                    "folders": []
+                },
+                {
+                    "name": "idxBranch5",
+                    "dir": "C:\\Users\\jgcar\\Desktop\\idxTest\\idxBranch5",
+                    "files": [
+                        "idxFile-0.docx",
+                        "idxFile-1.docx",
+                        "idxFile-2.docx",
+                        "idxFile-3.docx",
+                        "idxFile-4.docx",
+                        "idxFile-5.docx",
+                        "idxFile-6.docx",
+                        "idxFile-7.docx",
+                        "idxFile-8.docx",
+                        "idxFile-9.docx"
+                    ],
+                    "folders": []
+                },
+                {
+                    "name": "idxBranch6",
+                    "dir": "C:\\Users\\jgcar\\Desktop\\idxTest\\idxBranch6",
+                    "files": [
+                        "idxFile-0.docx",
+                        "idxFile-1.docx",
+                        "idxFile-2.docx",
+                        "idxFile-3.docx",
+                        "idxFile-4.docx",
+                        "idxFile-5.docx",
+                        "idxFile-6.docx",
+                        "idxFile-7.docx",
+                        "idxFile-8.docx",
+                        "idxFile-9.docx"
+                    ],
+                    "folders": []
+                },
+                {
+                    "name": "idxBranch7",
+                    "dir": "C:\\Users\\jgcar\\Desktop\\idxTest\\idxBranch7",
                     "files": [
                         "idxFile-0.docx",
                         "idxFile-1.docx",
@@ -190,10 +314,6 @@
                 {
                     "name": "idxBranch8",
                     "dir": "C:\\Users\\jgcar\\Desktop\\idxTest\\idxBranch8",
-                    "tree": [
-                        "idxTest",
-                        "idxBranch8"
-                    ],
                     "files": [
                         "idxFile-0.docx",
                         "idxFile-1.docx",
@@ -211,10 +331,195 @@
                 {
                     "name": "idxBranch9",
                     "dir": "C:\\Users\\jgcar\\Desktop\\idxTest\\idxBranch9",
-                    "tree": [
-                        "idxTest",
-                        "idxBranch9"
+                    "files": [
+                        "idxFile-0.docx",
+                        "idxFile-1.docx",
+                        "idxFile-2.docx",
+                        "idxFile-3.docx",
+                        "idxFile-4.docx",
+                        "idxFile-5.docx",
+                        "idxFile-6.docx",
+                        "idxFile-7.docx",
+                        "idxFile-8.docx",
+                        "idxFile-9.docx"
                     ],
+                    "folders": []
+                }
+            ]
+        },
+        {
+            "name": "idxTest2",
+            "dir": "C:\\Users\\jgcar\\Desktop\\idxTest2",
+            "exclude": [],
+            "files": [
+                "idxPreFile-0.pptx",
+                "idxPreFile-1.pptx",
+                "idxPreFile-2.pptx",
+                "idxPreFile-3.pptx",
+                "idxPreFile-4.pptx",
+                "idxPreFile-5.pptx",
+                "idxPreFile-6.pptx",
+                "idxPreFile-7.pptx",
+                "idxPreFile-8.pptx",
+                "idxPreFile-9.pptx"
+            ],
+            "folders": [
+                {
+                    "name": "idxBranch0",
+                    "dir": "C:\\Users\\jgcar\\Desktop\\idxTest2\\idxBranch0",
+                    "files": [
+                        "idxFile-0.docx",
+                        "idxFile-1.docx",
+                        "idxFile-2.docx",
+                        "idxFile-3.docx",
+                        "idxFile-4.docx",
+                        "idxFile-5.docx",
+                        "idxFile-6.docx",
+                        "idxFile-7.docx",
+                        "idxFile-8.docx",
+                        "idxFile-9.docx"
+                    ],
+                    "folders": []
+                },
+                {
+                    "name": "idxBranch1",
+                    "dir": "C:\\Users\\jgcar\\Desktop\\idxTest2\\idxBranch1",
+                    "files": [
+                        "idxFile-0.docx",
+                        "idxFile-1.docx",
+                        "idxFile-2.docx",
+                        "idxFile-3.docx",
+                        "idxFile-4.docx",
+                        "idxFile-5.docx",
+                        "idxFile-6.docx",
+                        "idxFile-7.docx",
+                        "idxFile-8.docx",
+                        "idxFile-9.docx"
+                    ],
+                    "folders": []
+                },
+                {
+                    "name": "idxBranch2",
+                    "dir": "C:\\Users\\jgcar\\Desktop\\idxTest2\\idxBranch2",
+                    "files": [
+                        "idxFile-0.docx",
+                        "idxFile-1.docx",
+                        "idxFile-2.docx",
+                        "idxFile-3.docx",
+                        "idxFile-4.docx",
+                        "idxFile-5.docx",
+                        "idxFile-6.docx",
+                        "idxFile-7.docx",
+                        "idxFile-8.docx",
+                        "idxFile-9.docx"
+                    ],
+                    "folders": []
+                },
+                {
+                    "name": "idxBranch3",
+                    "dir": "C:\\Users\\jgcar\\Desktop\\idxTest2\\idxBranch3",
+                    "files": [
+                        "idxFile-0.docx",
+                        "idxFile-1.docx",
+                        "idxFile-2.docx",
+                        "idxFile-3.docx",
+                        "idxFile-4.docx",
+                        "idxFile-5.docx",
+                        "idxFile-6.docx",
+                        "idxFile-7.docx",
+                        "idxFile-8.docx",
+                        "idxFile-9.docx"
+                    ],
+                    "folders": []
+                },
+                {
+                    "name": "idxBranch4",
+                    "dir": "C:\\Users\\jgcar\\Desktop\\idxTest2\\idxBranch4",
+                    "files": [
+                        "idxFile-0.docx",
+                        "idxFile-1.docx",
+                        "idxFile-2.docx",
+                        "idxFile-3.docx",
+                        "idxFile-4.docx",
+                        "idxFile-5.docx",
+                        "idxFile-6.docx",
+                        "idxFile-7.docx",
+                        "idxFile-8.docx",
+                        "idxFile-9.docx"
+                    ],
+                    "folders": []
+                },
+                {
+                    "name": "idxBranch5",
+                    "dir": "C:\\Users\\jgcar\\Desktop\\idxTest2\\idxBranch5",
+                    "files": [
+                        "idxFile-0.docx",
+                        "idxFile-1.docx",
+                        "idxFile-2.docx",
+                        "idxFile-3.docx",
+                        "idxFile-4.docx",
+                        "idxFile-5.docx",
+                        "idxFile-6.docx",
+                        "idxFile-7.docx",
+                        "idxFile-8.docx",
+                        "idxFile-9.docx"
+                    ],
+                    "folders": []
+                },
+                {
+                    "name": "idxBranch6",
+                    "dir": "C:\\Users\\jgcar\\Desktop\\idxTest2\\idxBranch6",
+                    "files": [
+                        "idxFile-0.docx",
+                        "idxFile-1.docx",
+                        "idxFile-2.docx",
+                        "idxFile-3.docx",
+                        "idxFile-4.docx",
+                        "idxFile-5.docx",
+                        "idxFile-6.docx",
+                        "idxFile-7.docx",
+                        "idxFile-8.docx",
+                        "idxFile-9.docx"
+                    ],
+                    "folders": []
+                },
+                {
+                    "name": "idxBranch7",
+                    "dir": "C:\\Users\\jgcar\\Desktop\\idxTest2\\idxBranch7",
+                    "files": [
+                        "idxFile-0.docx",
+                        "idxFile-1.docx",
+                        "idxFile-2.docx",
+                        "idxFile-3.docx",
+                        "idxFile-4.docx",
+                        "idxFile-5.docx",
+                        "idxFile-6.docx",
+                        "idxFile-7.docx",
+                        "idxFile-8.docx",
+                        "idxFile-9.docx"
+                    ],
+                    "folders": []
+                },
+                {
+                    "name": "idxBranch8",
+                    "dir": "C:\\Users\\jgcar\\Desktop\\idxTest2\\idxBranch8",
+                    "files": [
+                        "idxFile-0.docx",
+                        "idxFile-1.docx",
+                        "idxFile-2.docx",
+                        "idxFile-3.docx",
+                        "idxFile-4.docx",
+                        "idxFile-5.docx",
+                        "idxFile-6.docx",
+                        "idxFile-7.docx",
+                        "idxFile-8.docx",
+                        "idxFile-9.docx"
+                    ],
+                    "folders": []
+                },
+                {
+                    "name": "idxBranch9",
+                    "dir": "C:\\Users\\jgcar\\Desktop\\idxTest2\\idxBranch9",
                     "files": [
                         "idxFile-0.docx",
                         "idxFile-1.docx",

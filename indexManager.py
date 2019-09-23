@@ -10,7 +10,7 @@ class IndexManager:
         self.name = None
         self.dir_ = None
         self.files = None
-        self.tree = None
+        self.exclude = None
 
     def save(self):
         print("Saving index database")
@@ -18,18 +18,20 @@ class IndexManager:
         with open('index.txt', 'w') as output:
             json.dump(self.index, output)
 
-    def define_folder(self, name, dir_, tree):
+    def define_folder(self, name, dir_):
         self.name = name
         self.dir_ = dir_
-        self.tree = tree
         self.files = []
 
-    def create_folder(self, parent_folders):
+    def create_folder(self, parent_folders, exclude = None):
         if self.actual_cell == None:
             self.actual_cell = self.index["folders"]
 
         cell = self.select_cell(self.actual_cell, parent_folders)
-        cell.append({"name": self.name, "dir": self.dir_, "tree": self.tree, "files": self.files, "folders": []})
+        if exclude == None:
+            cell.append({"name": self.name, "dir": self.dir_, "files": self.files, "folders": []})
+        else:
+            cell.append({"name": self.name, "dir": self.dir_, "exclude": exclude, "files": self.files, "folders": []})
 
         self.actual_cell = cell
 
