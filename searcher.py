@@ -1,18 +1,37 @@
 import os
 import multiprocessing as mp
 
+#PERSONAL LIBS
+import sorter
 from indexManager import index_manager
+
+class Item:
+    def __init__(self, fname, dir_, confidence):
+        self.fname = fname
+        self.dir = dir_
+        self.confidence = confidence
+
+    def print_(self):
+        print(self.fname, self.dir, self.confidence)
 
 class Search_Result:
     def __init__(self, files, folders):
         self.files = files
         self.folders = folders
 
-    def print_all(self):
-        print("Found files:")
-        print(self.files)
-        print("Found folders:")
-        print(self.folders)
+    def print_(self):
+        if self.files != None:
+            print("Found files:")
+            for file_ in self.files:
+                file_.print_()
+        else:
+            print("Found files: None")
+        if self.folders != None:
+            print("Found folders:")
+            for folder in self.folders:
+                folder.print_()
+        else:
+            print("Found folders: None")
 
 class Searcher:
     def __init__(self):
@@ -24,106 +43,108 @@ class Searcher:
         input_ = input_str.split('_')
         return input_
 
-    def spatial_reduction(self, branch, selection):
+    def spatial_reduction(self, branch, selection, equal=False):
         cells = []
 
         for folder_cell in selection:
             folder_name = folder_cell["name"].lower()
-            if folder_name == branch:
+            confidence = self.name_similarity(branch.lower(), folder_name, equal)
+            if confidence > 0:
                 cells.append(folder_cell)
-            else:
-                if len(branch) < len(folder_name):
-                    branch_list = list(branch)
-                    folder_name_list = list(folder_name)
 
-                    #If input is equal to folder name but is not fisinished yet save
-                    if branch_list == folder_name_list[0: len(branch_list)]:
-                        cells.append(folder_cell)
-
-            #TODO: Optimize
             if len(folder_cell["folders"]) > 0:
-                # Search for folders with same name inside those folder
-                # If sub-folders exist
                 recurred_cells = self.spatial_reduction(branch, folder_cell["folders"])
                 cells += recurred_cells
 
         #Send cells up to now to continue program
         return cells
 
-    def folder_search(self, branch, selection):
-        selection_cells = self.spatial_reduction(branch, selection)
+    def folder_search(self, branch, selection, equal=False):
+        selected_cells = self.spatial_reduction(branch, selection, equal)
         cells = []
         
-        for folder_cell in selection_cells:
-            cells.append([folder_cell["name"], folder_cell["dir"]])
+        for folder_cell in selected_cells:
+            confidence = self.name_similarity(branch.lower(), folder_cell["name"].lower(), equal)
+            new_folder = Item(folder_cell["name"], folder_cell["dir"], confidence)
+            cells.append(new_folder)
 
         if len(cells) == 0:
             cells = None
 
         return cells
 
-    def file_search(self, file_name, selection):
+    def file_search(self, file_name, selection, equal=False):
         cells = []
 
         for folder_cell in selection:
             for file_ in folder_cell["files"]:
-                if len(file_name) == len(file_):
-                    if file_name == file_.lower():
-                        cells.append((folder_cell["name"] + '_' + file_, folder_cell["dir"]))
-                elif len(file_name) < len(file_):
-                    file_check_list = list(file_.lower())
-                    file_name_list = list(file_name)
-
-                    if file_name_list == file_check_list[0:len(file_name_list)]:
-                        cells.append(folder_cell["name"] + '_' + file_, folder_cell["dir"])
-
-            #TODO: Optimize
+                confidence = self.name_similarity(file_name.lower(), file_.lower(), equal)
+                
+                if confidence > 0:
+                    output_file_name = file_
+                    if folder_cell["idx_rules"] == True:
+                        output_file_name = folder_cell["name"] + '_' + file_
+                    
+                    new_file = Item(output_file_name, folder_cell["dir"], confidence)
+                    cells.append(new_file)
+            
             if len(folder_cell["folders"]) > 0:
-                # Search for folders with same name inside those folder
-                # If sub-folders exist
                 recurred_cells = self.file_search(file_name, folder_cell["folders"])
                 if recurred_cells != None:
-                    cells.append(recurred_cells)
+                    cells += recurred_cells
 
         if len(cells) == 0:
             cells = None
 
         return cells
 
-    def isfile(self, input_):
-        search_result = self.search(input_)
+    def name_similarity(self, a, b, equal):
+        confidence = 0
+
+        if a == b:
+            confidence = 1
+        elif not equal and len(a) < len(b):
+            a = list(a)
+            b = list(b)
+
+            if a == b[:len(a)]:
+                confidence = round(len(a) / len(b), 2)
+
+        return confidence
+
+    def isfile(self, input_, equal=False):
+        search_result = self.search(input_, equal)
         if search_result.files != None:
             return True
         else:
             return False
 
-    def isdir(self, input_):
-        search_result = self.search(input_)
+    def isdir(self, input_, dir_=None, equal=False):
+        search_result = self.search(input_, equal)
+        isdir_ = False
         if search_result.folders != None:
-            return True
-        else:
-            return False
+            if dir_ == None:
+                isdir_ = True
+            else:
+                for folder in search_result.folders:
+                    if folder.dir == dir_:
+                        isdir_ = True
 
-    def search(self, input_):
+        return isdir_
+
+    def search(self, tree, equal=False):
         self.selection = self.index.copy()
-        tree = self.clean_input(input_)
         result = None
 
-        if len(tree) > 1:
-            for i, branch in enumerate(tree):
-                if (i + 1) < len(tree):
-                    folder_cells = self.spatial_reduction(branch, self.selection)
-                    self.selection = folder_cells
-                else:
-                    folders = self.folder_search(branch, self.selection)
-                    files = self.file_search(branch, self.selection)
-                    
-                    result = Search_Result(files, folders)
-        else:
-            folders = self.folder_search(tree[0], self.selection)
-            files = self.file_search(tree[0], self.selection)
+        for i, branch in enumerate(tree):
+            if (i + 1) < len(tree):
+                folder_cells = self.spatial_reduction(branch, self.selection, equal)
+                self.selection = folder_cells
 
-            result = Search_Result(files, folders)
+        folders = self.folder_search(tree[-1], self.selection, equal)
+        files = self.file_search(tree[-1], self.selection, equal)
+
+        result = Search_Result(files, folders)
 
         return result
 

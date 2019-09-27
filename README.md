@@ -1,5 +1,8 @@
-# AutoIndexator
-Program that automatically assigns names to files following a set of rules to make searching for them easier.
+# DOYLE - File/folder search engine & auto indexator
+This program is able to find files/folders that the program has saved in a database (and it should do it faster than the windows search feature). It can also index files following a set of rules that make it easier to find them and search for them: contaningFolder_camelCasedFileName.extension.
+
+## Upcoming features
+The program will feature a GUI that will make the selection of folders to indexate and the searching of files/folders very easy. The search algorithm will include multicore functionality for faster search speeds.
 
 ## TODO:
 - [ ] Migrate everything to a new project

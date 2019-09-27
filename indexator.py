@@ -2,81 +2,109 @@ import libs
 import cleaner
 import os
 
-from indexManager import index_manager
+#PERSONAL LIBS
+from indexManager import index_manager as idxman
 from searcher import searcher
 
 class DirectoryIndexator:
-    def __init__(self, root, remove_plural=True, exclude=[]):
+    def __init__(self, root, idx_rules=False, remove_plural=True, exclude=[]):
         self.root = root
         self.remove_plural = remove_plural
         self.exclude = exclude
 
+        self.idx_rules = idx_rules
 
     def start(self):
+        root_name = self.init_sequence()
+        if root_name == None:
+            print("Error in init_sequence.")
+            return
+
+        self.recursive_directory_idx([root_name], False)
+
+        idxman.save()
+
+    def start_reindexation(self):
+        root_name = self.init_sequence()
+        self.idx_rules = True
+
+        if root_name == None:
+            print("Error in init_sequence.")
+            return
+
+        self.recursive_directory_idx([root_name], True)
+
+        idxman.save()
+
+    def init_sequence(self):
         #Check that root exists
-        if os.path.isdir(self.root):
-            #Go to directory
-            root = self.root
-            libs.go(root)
+        if not os.path.isdir(self.root):
+            print("Root path does not exist")
+            return
 
-            #Get root name
-            root_path = root.split('\\')
-            root_name = root_path[len(root_path) - 1]
+        #Go to directory
+        root = self.root
+        libs.go(root)
 
-            if searcher.isdir(root_name):
-                print("Folder already indexed.")
-                return
+        #Get root name
+        root_path = root.split('\\')
+        root_name = root_path[len(root_path) - 1]
 
-            #Define branch in index manager
-            index_manager.define_folder(root_name, root)
+        if searcher.isdir([root_name], self.root, True):
+            print("Folder already indexed.")
+            return
 
-            #Search directory for folders and files
-            for root, branches, files in os.walk('.'):
-                #Change file names in root folder
-                for file_name in files:
-                    self.rename_file([root_name], file_name)
+        idxman.reset()
 
-                #Save branch
-                index_manager.create_folder([], self.exclude)
+        return root_name
 
-                #Check that the directory name is not in the exlude parameter
-                for branch in branches:
-                    if branch not in self.exclude and branch != None:
-                        #Directory must be included in reindexation
-                        self.search_directory([root_name, branch])
+    def recursive_directory_idx(self, tree, reindex):
+        self.define_folder(tree)
 
-            index_manager.save()
-
-    def search_directory(self, tree):
-        #Go to the folder
-        path = self.root + '\\' + '\\'.join(tree[1:]) #Since tree has root_name at the begining, exclude as it is also contained in self.root
-        libs.go(path)
-
-        #Define branch in index manager
-        index_manager.define_folder(tree[-1], path)
-
-        #Search branch
+        #Search directory for folders and files
         for root, branches, files in os.walk('.'):
-            #Rename files
+            #Change file names in root folder
             for file_name in files:
-                self.rename_file(tree, file_name)
+                if reindex:
+                    self.reindex_file(tree, file_name)
+                else:
+                    self.save_file(tree, file_name)
 
-            #Save brach in index manager
-            #parent_folders = []
-            #If last cell == last folder indexed, no need to find location again
-            #if index_manager.actual_cell["name"] != tree[len(tree) - 2]: 
-                #If is not, search for folder again
-            parent_folders = tree[:len(tree) - 1]
+            self.create_folder(tree)
 
-            index_manager.create_folder(parent_folders)
-
-            #If there are branches in the actual branch apply transformation
+            #Check that the directory name is not in the exlude parameter
             for branch in branches:
-                if branch not in self.exclude:
+                if branch not in self.exclude and branch != None:
                     #Add branch name to the tree
                     updated_tree = tree.copy()
                     updated_tree.append(branch)
-                    self.search_directory(updated_tree)
+                    self.recursive_directory_idx(updated_tree, reindex)
+
+    def define_folder(self, tree):
+        path = self.root
+        if len(tree) > 1:
+            path = self.root + '\\' + '\\'.join(tree[1:]) #Since tree has root_name at the begining, exclude as it is also contained in self.root
+        
+        libs.go(path)
+
+        #Define branch in index manager
+        idxman.define_folder(tree[-1], path, self.idx_rules)
+
+    def create_folder(self, tree):
+        #Save branch
+        if len(tree) == 1:
+            idxman.create_folder([], self.exclude)
+        else:
+            parent_folders = tree[:-1]
+            idxman.create_folder(parent_folders)
+
+    def save_file(self, raw_tree, raw_file_name):
+        file_name = raw_file_name
+
+        if self.idx_rules:
+            file_name = self.rename_file(raw_tree, raw_file_name)
+
+        idxman.add_file(file_name)
 
     def rename_file(self, raw_tree, raw_file_name):
         #File might be already indexed
@@ -95,83 +123,12 @@ class DirectoryIndexator:
         if target_name != raw_file_name:
             #It hasn't been indexed
             os.rename(raw_file_name, name_)
-            #Save name in index_manager
-            index_manager.files.append(file_name)
+            #Save name in idxman
+            return file_name
         else:
-            #It has been indexed
-            #Save name in index_manager
-            index_manager.files.append(original_file_name)
+            return original_file_name
 
-class DirectoryReindexator:
-    def __init__(self, root, remove_plural=True, exclude=[]):
-        self.root = root
-        self.remove_plural = remove_plural
-        self.exclude = exclude
-
-    def start(self):
-        #Check that root exists
-        if os.path.isdir(self.root):
-            root = self.root
-            #Go to directory
-            libs.go(root)
-
-            #Get root name
-            root_path = root.split('\\')
-            root_name = root_path[len(root_path) - 1]
-
-            #Define branch in index manager
-            index_manager.define_folder(root_name, root)
-
-            #Search directory for folders and files
-            for root, branches, files in os.walk('.'):
-                #Change file names in root folder
-                for file_name in files:
-                    self.rename_file([root_name], file_name)
-
-                #Save branch
-                index_manager.create_folder([], self.exclude)
-
-                #Check that the directory name is not in the exlude parameter
-                for branch in branches:
-                    if branch not in self.exclude and branch != None:
-                        #Directory must be included in reindexation
-                        self.search_directory([root_name, branch])
-
-            #Save index
-            index_manager.save()
-
-    def search_directory(self, tree):
-        #Go to the folder
-        path = self.root + '\\' + '\\'.join(tree[1:]) #Since tree has root_name at the begining, exclude as it is also contained in self.root
-        libs.go(path)
-
-        #Define branch in index manager
-        index_manager.define_folder(tree[-1], path)
-
-        #Search branch
-        for root, branches, files in os.walk('.'):
-            #Rename files
-            for file_name in files:
-                self.rename_file(tree, file_name)
-
-            #Save brach in index manager
-            #parent_folders = []
-            #If last cell == last folder indexed, no need to find location again
-            #if index_manager.actual_cell["name"] != tree[len(tree) - 2]: 
-                #If is not, search for folder again
-            parent_folders = tree[:len(tree) - 1]
-
-            index_manager.create_folder(parent_folders)
-
-            #If there are branches in the actual branch apply transformation
-            for branch in branches:
-                if branch not in self.exclude:
-                    #Add branch name to the tree
-                    updated_tree = tree.copy()
-                    updated_tree.append(branch)
-                    self.search_directory(updated_tree)
-
-    def rename_file(self, raw_tree, raw_file_name):
+    def reindex_file(self, raw_tree, raw_file_name):
         raw_chunks = raw_file_name.split('_')
         file_name = raw_chunks[-1] #prefix_prefix_name.extension
         
@@ -182,13 +139,13 @@ class DirectoryReindexator:
 
          #It hasn't been indexed
         os.rename(raw_file_name, name_)
-        #Save name in index_manager
-        index_manager.files.append(file_name)
+        #Save name in idxman
+        idxman.add_file(file_name)
 
 
 home_dir = "C:\\Users\\jgcar\\Desktop\\idxTest"
 home_dir_2 = "C:\\Users\\jgcar\\Desktop\\idxTest2"
-indexator = DirectoryIndexator(home_dir)
+indexator = DirectoryIndexator(home_dir, True)
 indexator.start()
-indexator.root = home_dir_2
+indexator = DirectoryIndexator(home_dir_2, True)
 indexator.start()
