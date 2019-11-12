@@ -1,15 +1,18 @@
 import os
 import multiprocessing as mp
+import time
 
 #PERSONAL LIBS
 import sorter
-from indexManager import index_manager
+from indexManager import index_manager as idxman
 
 class Item:
     def __init__(self, fname, dir_, confidence):
         self.fname = fname
         self.dir = dir_
         self.confidence = confidence
+
+        self.search_tree = None
 
     def print_(self):
         print(self.fname, self.dir, self.confidence)
@@ -35,7 +38,7 @@ class Search_Result:
 
 class Searcher:
     def __init__(self):
-        self.index = index_manager.index["folders"]
+        self.index = idxman.index["folders"]
         self.selection = self.index.copy() #Selection is full index at first
 
     def clean_input(self, raw_input):
@@ -51,7 +54,7 @@ class Searcher:
             confidence = self.name_similarity(branch.lower(), folder_name, equal)
             if confidence > 0:
                 cells.append(folder_cell)
-
+            
             if len(folder_cell["folders"]) > 0:
                 recurred_cells = self.spatial_reduction(branch, folder_cell["folders"])
                 cells += recurred_cells
@@ -65,7 +68,10 @@ class Searcher:
         
         for folder_cell in selected_cells:
             confidence = self.name_similarity(branch.lower(), folder_cell["name"].lower(), equal)
-            new_folder = Item(folder_cell["name"], folder_cell["dir"], confidence)
+            new_folder = [folder_cell["name"], folder_cell["dir"], confidence, None]
+            if (len(folder_cell["folders"]) > 0):
+                new_folder[3] = folder_cell["folders"]
+            
             cells.append(new_folder)
 
         if len(cells) == 0:
@@ -85,7 +91,7 @@ class Searcher:
                     if folder_cell["idx_rules"] == True:
                         output_file_name = folder_cell["name"] + '_' + file_
                     
-                    new_file = Item(output_file_name, folder_cell["dir"], confidence)
+                    new_file = [output_file_name, folder_cell["dir"], confidence]
                     cells.append(new_file)
             
             if len(folder_cell["folders"]) > 0:
@@ -113,39 +119,58 @@ class Searcher:
         return confidence
 
     def isfile(self, input_, equal=False):
-        search_result = self.search(input_, equal)
-        if search_result.files != None:
+        files, folders = self.start_search(input_, equal)
+        if files != None:
             return True
         else:
             return False
 
     def isdir(self, input_, dir_=None, equal=False):
-        search_result = self.search(input_, equal)
+        files, folders = self.start_search(input_, equal)
         isdir_ = False
-        if search_result.folders != None:
+        if folders != None:
             if dir_ == None:
                 isdir_ = True
             else:
-                for folder in search_result.folders:
-                    if folder.dir == dir_:
+                for folder in folders:
+                    if folder[1] == dir_:
                         isdir_ = True
 
         return isdir_
 
-    def search(self, tree, equal=False):
+    def start_search(self, tree, equal=False):
         self.selection = self.index.copy()
-        result = None
+        self.search_tree = []
+
+        files, folders = self.search(tree, equal)
+        return files, folders
+
+    def search(self, tree, equal=False):
+        if self.search_tree != []:
+            tree.insert(0, self.search_tree[-1])
+            self.search_tree.pop()
 
         for i, branch in enumerate(tree):
             if (i + 1) < len(tree):
                 folder_cells = self.spatial_reduction(branch, self.selection, equal)
                 self.selection = folder_cells
 
+        self.search_tree += tree
+
         folders = self.folder_search(tree[-1], self.selection, equal)
         files = self.file_search(tree[-1], self.selection, equal)
 
-        result = Search_Result(files, folders)
-
-        return result
+        return files, folders
 
 searcher = Searcher()
+# start = time.time()
+result1 = searcher.start_search(["idxBranch3"])
+# result2 = searcher.start_search(["Películas"])
+# result3 = searcher.start_search(["index.html"])
+
+print(result1[0], result1[1])
+# print(result2[0], result2[1])
+# print(result3[0], result3[1])
+
+# end = time.time() - start
+# print(end)

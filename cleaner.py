@@ -2,7 +2,7 @@ def clean_tree(raw_tree, remove_plural):
     branch = raw_tree[-1]
     #TODO: Check further processing
     branch = list(branch)
-    branch[0].lower()
+    branch[0] = branch[0].lower()
     if remove_plural and branch[len(branch) - 1] == 's':
         #If the last letter of the branch is an 's', remove it
         branch.pop(len(branch) - 1) #Remove s

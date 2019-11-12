@@ -143,9 +143,9 @@ class DirectoryIndexator:
         idxman.add_file(file_name)
 
 
-home_dir = "C:\\Users\\jgcar\\Desktop\\idxTest"
-home_dir_2 = "C:\\Users\\jgcar\\Desktop\\idxTest2"
-indexator = DirectoryIndexator(home_dir, True)
-indexator.start()
-indexator = DirectoryIndexator(home_dir_2, True)
-indexator.start()
+home_dir = "C:\\Users\\jgcar\\OneDrive - Universidad Pontificia Comillas"
+# home_dir_2 = "C:\\Users\\jgcar\\Desktop\\Coding"
+indexator = DirectoryIndexator(home_dir, exclude=["Notebooks", "Colegio"], idx_rules=True, remove_plural=False)
+indexator.start_reindexation()
+# indexator = DirectoryIndexator(home_dir_2, True)
+# indexator.start()

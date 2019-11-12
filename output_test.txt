@@ -1,0 +1,13 @@
+[{
+    'name': 'idxBranch7',
+    'dir': 'C:\\Users\\jgcar\\Desktop\\idxTest\\idxBranch5\\idxBranch7',
+    'idx_rules': False,
+    'files': ['idxBranch7_idxFile-0.docx', 'idxBranch7_idxFile-1.docx', 'idxBranch7_idxFile-2.docx', 'idxBranch7_idxFile-3.docx', 'idxBranch7_idxFile-4.docx', 'idxBranch7_idxFile-5.docx', 'idxBranch7_idxFile-6.docx', 'idxBranch7_idxFile-7.docx', 'idxBranch7_idxFile-8.docx', 'idxBranch7_idxFile-9.docx'],
+    'folders': []
+}, {
+    'name': 'idxBranch7',
+    'dir': 'C:\\Users\\jgcar\\Desktop\\idxTest\\idxBranch5\\idxBranch7',
+    'idx_rules': False,
+    'files': ['idxBranch7_idxFile-0.docx', 'idxBranch7_idxFile-1.docx', 'idxBranch7_idxFile-2.docx', 'idxBranch7_idxFile-3.docx', 'idxBranch7_idxFile-4.docx', 'idxBranch7_idxFile-5.docx', 'idxBranch7_idxFile-6.docx', 'idxBranch7_idxFile-7.docx', 'idxBranch7_idxFile-8.docx', 'idxBranch7_idxFile-9.docx'],
+    'folders': []
+}]
